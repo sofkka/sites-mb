@@ -440,44 +440,91 @@
       gap: 1rem;
     }
 
-    /* ===== GALLERY / CLUB OVERVIEW ===== */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-    }
-
-    .gallery-item {
+    /* ===== GALLERY / CLUB OVERVIEW (CAROUSEL) ===== */
+    .carousel {
       position: relative;
+      max-width: 900px;
+      margin-inline: auto;
       border-radius: var(--radius-lg);
-      overflow: hidden;
       border: 1px solid var(--border);
       background: var(--bg-card);
-      transition: var(--transition);
-      animation: fadeInUp 0.6s ease-out both;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
     }
 
-    .gallery-item:nth-child(1) { animation-delay: 0.05s; }
-    .gallery-item:nth-child(2) { animation-delay: 0.1s; }
-    .gallery-item:nth-child(3) { animation-delay: 0.15s; }
-    .gallery-item:nth-child(4) { animation-delay: 0.2s; }
-
-    .gallery-item:hover {
-      border-color: rgba(0, 240, 255, 0.35);
-      box-shadow: var(--glow-cyan);
-      transform: translateY(-4px);
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
     }
 
-    .gallery-item img {
+    .carousel-slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+      position: relative;
+    }
+
+    .carousel-slide img {
       width: 100%;
-      height: 100%;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      display: block;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.05);
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(10, 10, 15, 0.6);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      color: var(--cyan);
+      font-size: 1.4rem;
+      line-height: 1;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: var(--transition);
+    }
+
+    .carousel-btn:hover {
+      background: rgba(0, 240, 255, 0.15);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .carousel-prev { left: 1rem; }
+    .carousel-next { right: 1rem; }
+
+    .carousel-dots {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 1rem;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      border: none;
+      padding: 0;
+      transition: var(--transition);
+    }
+
+    .carousel-dot.is-active {
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+      transform: scale(1.2);
     }
 
     /* ===== ADVANTAGES ===== */
@@ -922,10 +969,6 @@
 
     /* 480px */
     @media (min-width: 480px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
       .advantages-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -966,10 +1009,6 @@
 
     /* 1024px */
     @media (min-width: 1024px) {
-      .gallery-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-
       .advantages-grid {
         grid-template-columns: repeat(4, 1fr);
       }
@@ -1068,22 +1107,29 @@
         <h2 class="section-title" id="gallery-title">Обзор <span>клуба</span></h2>
         <p class="section-subtitle">Загляни внутрь CyberZone — атмосфера, железо и комфорт</p>
 
-        <div class="gallery-grid">
-          <figure class="gallery-item">
-            <img src="images/клуб.png" alt="Общий вид главного игрового зала CyberZone" loading="lazy">
-          </figure>
+        <div class="carousel" id="club-carousel" tabindex="0" aria-roledescription="carousel" aria-label="Фотографии клуба">
+          <div class="carousel-track" id="carousel-track">
+            <figure class="carousel-slide">
+              <img src="images/клуб.png" alt="Общий вид главного игрового зала CyberZone" loading="lazy">
+            </figure>
 
-          <figure class="gallery-item">
-            <img src="images/клуб 2.jpg" alt="Игровые места с мониторами в CyberZone" loading="lazy">
-          </figure>
+            <figure class="carousel-slide">
+              <img src="images/клуб 2.jpg" alt="Игровые места с мониторами в CyberZone" loading="lazy">
+            </figure>
 
-          <figure class="gallery-item">
-            <img src="images/клуб 3.jpg" alt="Зона отдыха и бар в CyberZone" loading="lazy">
-          </figure>
+            <figure class="carousel-slide">
+              <img src="images/клуб 3.jpg" alt="Зона отдыха и бар в CyberZone" loading="lazy">
+            </figure>
 
-          <figure class="gallery-item">
-            <img src="images/пк.jpg" alt="Мощный игровой ПК в CyberZone" loading="lazy">
-          </figure>
+            <figure class="carousel-slide">
+              <img src="images/пк.jpg" alt="Мощный игровой ПК в CyberZone" loading="lazy">
+            </figure>
+          </div>
+
+          <button class="carousel-btn carousel-prev" id="carousel-prev" type="button" aria-label="Предыдущее фото">&#8249;</button>
+          <button class="carousel-btn carousel-next" id="carousel-next" type="button" aria-label="Следующее фото">&#8250;</button>
+
+          <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Выбор фото"></div>
         </div>
       </div>
     </section>
@@ -1557,6 +1603,81 @@
         document.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
       }
+    })();
+  </script>
+
+  <!-- ===== CAROUSEL JS ===== -->
+  <script>
+    (function () {
+      var carousel = document.getElementById('club-carousel');
+      if (!carousel) return;
+
+      var track = document.getElementById('carousel-track');
+      var prevBtn = document.getElementById('carousel-prev');
+      var nextBtn = document.getElementById('carousel-next');
+      var dotsWrap = document.getElementById('carousel-dots');
+      var slides = Array.prototype.slice.call(track.children);
+      var index = 0;
+      var timer = null;
+      var startX = 0;
+
+      // Build dots
+      slides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot';
+        dot.setAttribute('type', 'button');
+        dot.setAttribute('aria-label', 'Фото ' + (i + 1));
+        dot.addEventListener('click', function () { goTo(i); restart(); });
+        dotsWrap.appendChild(dot);
+      });
+      var dots = Array.prototype.slice.call(dotsWrap.children);
+
+      function goTo(i) {
+        index = (i + slides.length) % slides.length;
+        track.style.transform = 'translateX(-' + index * 100 + '%)';
+        dots.forEach(function (d, di) {
+          d.classList.toggle('is-active', di === index);
+        });
+      }
+
+      function next() { goTo(index + 1); }
+      function prev() { goTo(index - 1); }
+
+      function restart() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(next, 4000);
+      }
+
+      prevBtn.addEventListener('click', function () { prev(); restart(); });
+      nextBtn.addEventListener('click', function () { next(); restart(); });
+
+      // Keyboard arrows
+      carousel.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { prev(); restart(); }
+        if (e.key === 'ArrowRight') { next(); restart(); }
+      });
+
+      // Touch swipe
+      carousel.addEventListener('touchstart', function (e) {
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+
+      carousel.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) {
+          if (dx < 0) next(); else prev();
+          restart();
+        }
+      }, { passive: true });
+
+      // Pause autoplay on hover / focus
+      carousel.addEventListener('mouseenter', function () { if (timer) clearInterval(timer); });
+      carousel.addEventListener('mouseleave', restart);
+      carousel.addEventListener('focusin', function () { if (timer) clearInterval(timer); });
+      carousel.addEventListener('focusout', restart);
+
+      goTo(0);
+      restart();
     })();
   </script>
 </body>
