@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CyberZone — компьютерный клуб с RTX 4080, 240 Гц мониторами и PlayStation 5. Работаем 24/7. Бронируй место!">
+  <meta name="keywords" content="компьютерный клуб, cyberzone, игры, cs2, dota 2, valorant, ps5, киберспорт">
+  <meta property="og:title" content="CyberZone — компьютерный клуб">
+  <meta property="og:description" content="Топовые ПК, RTX 4080, 240 Гц мониторы. Твоя победа начинается здесь.">
+  <meta property="og:type" content="website">
+  <title>CyberZone — компьютерный клуб</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Roboto', 'Segoe UI', sans-serif;
+      background: #0D0D0D;
+      color: #E0E0E0;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-family: 'Orbitron', 'Georgia', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,13,.95);
+      border-bottom: 1px solid #00F0FF33;
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      font-size: 1.4rem; font-weight: bold;
+      color: #00F0FF;
+      text-shadow: 0 0 10px #00F0FF88;
+    }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    nav a {
+      color: #E0E0E0; text-decoration: none;
+      transition: color .3s, text-shadow .3s;
+    }
+    nav a:hover { color: #00F0FF; text-shadow: 0 0 8px #00F0FF; }
+
+    /* Hero */
+    .hero {
+      min-height: 85vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 2rem;
+      background:
+        radial-gradient(circle at 20% 30%, #B026FF22 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, #00F0FF22 0%, transparent 50%),
+        #0D0D0D;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      margin-bottom: 1rem;
+      color: #fff;
+      text-shadow: 0 0 20px #00F0FF, 0 0 40px #B026FF;
+    }
+    .hero p {
+      font-size: 1.2rem; margin-bottom: 2rem;
+      max-width: 600px; color: #B0B0B0;
+    }
+    .btn {
+      display: inline-block; padding: 0.9rem 2rem;
+      background: linear-gradient(90deg, #00F0FF, #B026FF);
+      color: #0D0D0D; font-weight: bold;
+      border: none; border-radius: 30px; cursor: pointer;
+      text-decoration: none; font-size: 1rem;
+      transition: transform .3s, box-shadow .3s;
+      box-shadow: 0 0 15px #00F0FF66;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px #00F0FF, 0 0 40px #B026FF;
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid #00F0FF;
+      color: #00F0FF;
+      box-shadow: none;
+    }
+    .btn-secondary:hover {
+      background: #00F0FF22;
+      box-shadow: 0 0 20px #00F0FF;
+    }
+
+    /* Секции */
+    section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+    section h2 {
+      font-size: 2rem; margin-bottom: 2rem; text-align: center;
+      color: #00F0FF;
+      text-shadow: 0 0 10px #00F0FF55;
+    }
+
+    /* О клубе */
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+    .about-img {
+      background: linear-gradient(135deg, #1A1A2E, #0D0D0D);
+      border: 1px solid #00F0FF44;
+      border-radius: 20px; height: 300px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      box-shadow: 0 0 30px #00F0FF22 inset;
+    }
+
+    /* Галерея / Карусель */
+    .carousel {
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid #00F0FF44;
+      box-shadow: 0 0 30px #00F0FF22;
+    }
+    .slides {
+      display: flex;
+      width: 400%;
+      animation: slide 16s infinite;
+    }
+    .slide {
+      width: 25%;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #1A1A2E, #0D0D0D);
+      color: #E0E0E0;
+    }
+    .slide span {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 15px #00F0FF);
+    }
+    .slide p {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: #00F0FF;
+      text-shadow: 0 0 10px #00F0FF55;
+    }
+    @keyframes slide {
+      0%, 20%   { transform: translateX(0); }
+      25%, 45%  { transform: translateX(-25%); }
+      50%, 70%  { transform: translateX(-50%); }
+      75%, 95%  { transform: translateX(-75%); }
+      100%      { transform: translateX(0); }
+    }
+    .carousel:hover .slides {
+      animation-play-state: paused;
+    }
+
+    /* Преимущества */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature {
+      background: #1A1A2E;
+      border: 1px solid #00F0FF33;
+      padding: 1.5rem; border-radius: 16px;
+      text-align: center;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px #00F0FF44;
+    }
+    .feature .icon { font-size: 2.5rem; margin-bottom: .5rem; }
+
+    /* Тарифы */
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .price-card {
+      background: #1A1A2E;
+      border: 1px solid #B026FF44;
+      border-radius: 16px; padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .price-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px #B026FF66;
+    }
+    .price-card.vip { border-color: #FF2E97; }
+    .price-card h3 { margin-bottom: 1rem; color: #fff; }
+    .price-tag {
+      font-size: 2rem; font-weight: bold;
+      color: #00F0FF; margin: 1rem 0;
+    }
+    .price-card ul { list-style: none; margin-bottom: 1.5rem; color: #B0B0B0; }
+    .price-card li { padding: .3rem 0; }
+
+    /* Отзывы */
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .review {
+      background: #1A1A2E;
+      border-left: 3px solid #00F0FF;
+      padding: 1.5rem; border-radius: 12px;
+      font-style: italic;
+    }
+    .review .author {
+      font-style: normal; font-weight: bold;
+      margin-top: .8rem; color: #00F0FF;
+    }
+
+    /* Контакты */
+    .contacts { text-align: center; }
+    .contacts p { margin: .5rem 0; font-size: 1.1rem; }
+
+    /* Footer */
+    footer {
+      background: #1A1A2E;
+      border-top: 1px solid #00F0FF33;
+      text-align: center; padding: 1.5rem;
+      color: #808080;
+    }
+
+    /* Адаптив */
+    @media (max-width: 768px) {
+      .about { grid-template-columns: 1fr; }
+      header { flex-direction: column; gap: .8rem; }
+      nav ul { justify-content: center; }
+      .slide span { font-size: 3.5rem; }
+      .slide p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">🎮 CyberZone</div>
+    <nav>
+      <ul>
+        <li><a href="#about">О клубе</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#features">Преимущества</a></li>
+        <li><a href="#pricing">Тарифы</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Играй на максимуме</h1>
+    <p>Топовые ПК, RTX 4080, 240 Гц мониторы и лаг-free интернет. Твоя победа начинается здесь.</p>
+    <a href="#pricing" class="btn">Смотреть тарифы</a>
+    <a href="#contacts" class="btn btn-secondary" style="margin-top:1rem;">Забронировать место</a>
+  </section>
+
+  <!-- О клубе -->
+  <section id="about">
+    <h2>О клубе</h2>
+    <div class="about">
+      <div class="about-img">🖥️🎧</div>
+      <div>
+        <p>«CyberZone» — это компьютерный клуб нового поколения. У нас 40 игровых мест, разделённых на зоны Standard, VIP и PlayStation 5.</p>
+        <p>Мы работаем круглосуточно, проводим турниры по CS2, Dota 2 и Valorant, а также предлагаем буст-меню и снеки прямо к месту.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Галерея / Карусель -->
+  <section id="gallery">
+    <h2>Атмосфера клуба</h2>
+    <div class="carousel">
+      <div class="slides">
+        <div class="slide"><span>🖥️</span><p>Игровая зона Standard</p></div>
+        <div class="slide"><span>🎮</span><p>VIP-комната с RTX 4080</p></div>
+        <div class="slide"><span>🕹️</span><p>PlayStation 5 зона</p></div>
+        <div class="slide"><span>🏆</span><p>Турниры каждую субботу</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Преимущества -->
+  <section id="features">
+    <h2>Почему выбирают нас</h2>
+    <div class="features">
+      <div class="feature"><div class="icon">⚡</div><h3>RTX 4080</h3><p>Максимальные настройки в любой игре.</p></div>
+      <div class="feature"><div class="icon">🖥️</div><h3>240 Гц</h3><p>Мониторы ASUS ROG для киберспорта.</p></div>
+      <div class="feature"><div class="icon">🌐</div><h3>1 Гбит/с</h3><p>Стабильный пинг без лагов.</p></div>
+      <div class="feature"><div class="icon">🍕</div><h3>Еда и напитки</h3><p>Приносим прямо к компьютеру.</p></div>
+    </div>
+  </section>
+
+  <!-- Тарифы -->
+  <section id="pricing">
+    <h2>Тарифы и зоны</h2>
+    <div class="pricing">
+      <div class="price-card">
+        <h3>Standard</h3>
+        <div class="price-tag">150 ₽/час</div>
+        <ul>
+          <li>RTX 3060</li>
+          <li>144 Гц монитор</li>
+          <li>Игровая периферия</li>
+        </ul>
+        <a href="#contacts" class="btn">Выбрать</a>
+      </div>
+      <div class="price-card vip">
+        <h3>VIP</h3>
+        <div class="price-tag">300 ₽/час</div>
+        <ul>
+          <li>RTX 4080</li>
+          <li>240 Гц монитор</li>
+          <li>Механическая клавиатура</li>
+          <li>Отдельная комната</li>
+        </ul>
+        <a href="#contacts" class="btn">Выбрать</a>
+      </div>
+      <div class="price-card">
+        <h3>PlayStation 5</h3>
+        <div class="price-tag">250 ₽/час</div>
+        <ul>
+          <li>PS5 + 2 геймпада</li>
+          <li>4K телевизор</li>
+          <li>Большой выбор игр</li>
+        </ul>
+        <a href="#contacts" class="btn">Выбрать</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Отзывы -->
+  <section id="reviews">
+    <h2>Отзывы игроков</h2>
+    <div class="reviews">
+      <div class="review">«Лучший клуб в городе! Пинг 5 мс, ПК летают.»<div class="author">— Артём, CS2</div></div>
+      <div class="review">«Хожу с друзьями каждую пятницу. Атмосфера топ.»<div class="author">— Даша, Dota 2</div></div>
+      <div class="review">«VIP-зона — огонь. Отдельная комната, никто не мешает.»<div class="author">— Кирилл, Valorant</div></div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contacts" class="contacts">
+    <h2>Контакты</h2>
+    <p>📍 г. Москва, ул. Геймеров, 42</p>
+    <p>🕒 Круглосуточно, 24/7</p>
+    <p>📞 +7 (999) 777-77-77</p>
+    <p>✉️ play@cyberzone.ru</p>
+    <a href="tel:+79997777777" class="btn" style="margin-top:1rem;">Позвонить</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 CyberZone. Все права защищены. Играй ответственно.</p>
+  </footer>
+
+</body>
+</html>
