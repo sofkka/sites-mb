@@ -440,6 +440,60 @@
       gap: 1rem;
     }
 
+    /* ===== GALLERY / CLUB OVERVIEW ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: var(--transition);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+
+    .gallery-item:nth-child(1) { animation-delay: 0.05s; }
+    .gallery-item:nth-child(2) { animation-delay: 0.1s; }
+    .gallery-item:nth-child(3) { animation-delay: 0.15s; }
+    .gallery-item:nth-child(4) { animation-delay: 0.2s; }
+
+    .gallery-item:hover {
+      border-color: rgba(0, 240, 255, 0.35);
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-4px);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 1.5rem 1.25rem 1rem;
+      background: linear-gradient(to top, rgba(10, 10, 15, 0.92), rgba(10, 10, 15, 0));
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--text);
+    }
+
     /* ===== ADVANTAGES ===== */
     .advantages-grid {
       display: grid;
@@ -882,6 +936,10 @@
 
     /* 480px */
     @media (min-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       .advantages-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -922,6 +980,10 @@
 
     /* 1024px */
     @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
       .advantages-grid {
         grid-template-columns: repeat(4, 1fr);
       }
@@ -952,6 +1014,7 @@
 
       <nav class="nav" aria-label="Основная навигация">
         <ul class="nav-list">
+          <li><a href="#gallery" class="nav-link">Обзор</a></li>
           <li><a href="#advantages" class="nav-link">Преимущества</a></li>
           <li><a href="#zones" class="nav-link">Зоны</a></li>
           <li><a href="#tariffs" class="nav-link">Тарифы</a></li>
@@ -977,6 +1040,7 @@
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Мобильное меню">
     <ul class="mobile-nav-list">
+      <li><a href="#gallery" class="mobile-nav-link">Обзор</a></li>
       <li><a href="#advantages" class="mobile-nav-link">Преимущества</a></li>
       <li><a href="#zones" class="mobile-nav-link">Зоны</a></li>
       <li><a href="#tariffs" class="mobile-nav-link">Тарифы</a></li>
@@ -1008,6 +1072,36 @@
             <a href="#tariffs" class="btn btn-primary">Выбрать тариф</a>
             <a href="#contacts" class="btn btn-outline">Как добраться</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CLUB OVERVIEW / GALLERY ===== -->
+    <section class="section" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <h2 class="section-title" id="gallery-title">Обзор <span>клуба</span></h2>
+        <p class="section-subtitle">Загляни внутрь CyberZone — атмосфера, железо и комфорт</p>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item">
+            <img src="images/клуб.png" alt="Общий вид главного игрового зала CyberZone" loading="lazy">
+            <figcaption class="gallery-caption">Главный игровой зал</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/клуб 2.jpg" alt="Игровые места с мониторами в CyberZone" loading="lazy">
+            <figcaption class="gallery-caption">Игровые места</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/клуб 3.jpg" alt="Зона отдыха и бар в CyberZone" loading="lazy">
+            <figcaption class="gallery-caption">Зона отдыха и бар</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/пк.jpg" alt="Мощный игровой ПК в CyberZone" loading="lazy">
+            <figcaption class="gallery-caption">Топовое железо</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -1386,6 +1480,7 @@
     <div class="container footer-inner">
       <div class="footer-logo">CyberZone</div>
       <nav class="footer-nav" aria-label="Навигация в подвале">
+        <a href="#gallery">Обзор</a>
         <a href="#advantages">Преимущества</a>
         <a href="#zones">Зоны</a>
         <a href="#tariffs">Тарифы</a>
